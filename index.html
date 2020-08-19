@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="A quick and easy way to list all of your Minecraft Java Edition mods without having to uploading anything.">
+
+    <title>List my Minecraft Mods</title>
+
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+</head>
+
+<body lang="en">
+    <div class="container">
+        <!-- Header section -->
+        <h1>List my Minecraft Mods</h1>
+
+        <noscript>
+            <div class="alert alert-warning">
+                <strong>Warning!</strong> You need to enable JavaScript in order to use this site.
+            </div>
+        </noscript>
+        <div class="alert alert-warning" id="information"></div>
+
+        <!-- Drop section -->
+        <div ondragend="handleFileSelect()" class="alert alert-info" id="dropzone">
+            <div id=dropzoneInfo>Drop your mod files or folder here<br><span>Nothing will be uploaded</span></div>
+        </div>
+
+        <!-- Output section -->
+        <div id="copyDiv">
+            <span id="copyMessage"></span>
+            <button type="button" class="btn btn-primary" id="buttonCopy" onclick="copyToClipboard()" disabled>Copy to Clipboard</button>
+        </div>
+        <h4 id="countHeader">&nbsp;</h4>
+        <textarea id="copyArea" tabIndex="-1" autocomplete="false" readonly></textarea>
+        <div class="alert alert-secondary bg-light" id="output"></div>
+
+        <!-- Footer section -->
+        <div id="footer" class="container-fluid">
+            <div><a href="https://github.com/Regnander/list-my-minecraft-mods">Code by Regnander</a></div> <span>&#9474;</span>
+            <div><a href="https://getbootstrap.com/">Bootstrap Theme</a></div>
+        </div>
+    </div>
+
+    <!-- Local scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>

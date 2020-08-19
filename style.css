@@ -1,0 +1,254 @@
+:root {
+    --hueRotate: -60deg;
+    --dropZoneBg: linear-gradient(to left bottom, #77ff877a, #fff0), linear-gradient(to right top, #7ca3ff78, #00c2ff00), radial-gradient(circle at bottom, #ff83009c, #0000);
+}
+
+h1, h4, .modEntry, #footer, #dropzone, #output, #ghLogo, #copyDiv, #copyMessage, #copyArea {
+    user-select: none;
+}
+
+body {
+    max-height: 100vw;
+    padding-top: 10px;
+}
+
+h1, h4 {
+    font-family: 'Raleway', sans-serif;
+}
+
+a, a:hover, a:visited {
+    color: #006645;
+}
+
+button:disabled {
+    filter: grayscale(1);
+}
+
+#footer {
+    font-size: smaller;
+}
+
+#footer div {
+    display: inline-block;
+    width: calc(50% - 10px);
+}
+
+#footer div:nth-of-type(1) {
+    text-align: right;
+}
+
+#footer div:nth-of-type(2) {
+    text-align: left;
+}
+
+#footer span {
+    color: #bee5eb;
+}
+
+#information {
+    display: none;
+}
+
+#dropzone {
+    text-align: center;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    color: #062b31;
+    border-color: #d6d8db;
+    background-image: var(--dropZoneBg), linear-gradient(#FFF, #FFF);
+}
+
+#dropzoneInfo {
+    pointer-events: none;
+    font-size: large;
+}
+
+#dropzoneInfo span {
+    font-size: medium;
+    opacity: 0.7;
+}
+
+#dropzoneInfo, .modEntry, .btn {
+    font-family: 'Baloo 2', cursive;
+}
+
+#output {
+    width: 100%;
+    padding: 10px;
+    min-height: 58px;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: stretch;
+}
+
+#copyDiv {
+    float: right;
+}
+
+#copyArea {
+    opacity: 0;
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    resize: none;
+    z-index: -99;
+}
+
+#copyMessage {
+    padding-right: 5px;
+    opacity: 0%;
+}
+
+#buttonCopy {
+    padding: 0px 10px;
+}
+
+#footer {
+    text-align: center;
+    font-family: 'Baloo 2', cursive;
+    padding-bottom: 16px;
+}
+
+.modEntry {
+    color: #3f4851;
+    max-width: 100%;
+    max-height: 28px;
+    box-shadow: 0px 0px 0px 1px #0001 inset;
+    border-radius: 10px;
+    padding: 2px 7px;
+    margin: 2px;
+    display: inline-block;
+    overflow-wrap: anywhere;
+}
+
+.modEntry span {
+    height: 100%;
+    display: inline-block;
+    margin: auto 0;
+}
+
+.messageFadeIn {
+    animation: messageFadeIn 2s ease-out 1;
+    opacity: 100%;
+}
+
+.messageFadeOut {
+    animation: messageFadeOut 2s ease-in 1;
+}
+
+.dropzoneFadeIn {
+    animation: animDropzoneFadeIn .5s;
+    filter: hue-rotate(var(--hueRotate)) saturate(2);
+}
+
+.dropzoneFadeOut {
+    animation: animDropzoneFadeOut .5s;
+    filter: hue-rotate(0deg) saturate(1);
+}
+
+.messageFadeIn {
+    opacity: 100%;
+}
+
+.messageFadeOut {
+    opacity: 0%;
+}
+
+.buttonDisabled {
+    animation: animButtonDisabled .5s;
+    filter: grayscale(1);
+}
+
+.buttonEnabled {
+    animation: animButtonEnabled .5s;
+    filter: grayscale(0);
+}
+
+@keyframes animButtonDisabled {
+    0% {
+        filter: grayscale(0);
+    }
+    100% {
+        filter: grayscale(1);
+    }
+}
+
+@keyframes animButtonEnabled {
+    0% {
+        filter: grayscale(1);
+    }
+    100% {
+        filter: grayscale(0);
+    }
+}
+
+@keyframes animDropzoneFadeIn {
+    0% {
+        filter: hue-rotate(0deg) saturate(1);
+    }
+    100% {
+        filter: hue-rotate(var(--hueRotate)) saturate(1.5);
+    }
+}
+
+@keyframes animDropzoneFadeOut {
+    0% {
+        filter: hue-rotate(var(--hueRotate)) saturate(1.5);
+    }
+    100% {
+        filter: hue-rotate(0deg) saturate(1);
+    }
+}
+
+@keyframes messageFadeIn {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+@keyframes messageFadeOut {
+    0% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0%;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --hueRotate: -30deg;
+    }
+    body {
+        background-color: #121212;
+        color: #e6e6e6;
+    }
+    button {
+        opacity: 0.9;
+    }
+    a, a:hover, a:visited {
+        color: #9addc7;
+    }
+    #dropzone {
+        color: #FFF;
+        border-color: #808080;
+        background-image: var(--dropZoneBg), linear-gradient(#121212, #121212);
+    }
+    .bg-light {
+        background-color: #262626 !important;
+        border-color: #808080;
+    }
+    .modEntry {
+        color: black;
+        opacity: 0.75;
+    }
+    .dropzoneFadeIn {
+        filter: hue-rotate(var(--hueRotate)) saturate(2);
+    }
+}
