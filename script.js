@@ -5,7 +5,7 @@
  */
 function detectUnsupporterBrowser() {
     // Checking if a cursor isn't present on the current device.
-    if (window.matchMedia("(pointer: none)").matches) {
+    if (window.matchMedia("(hover: none)").matches && window.matchMedia("(pointer: coarse)").matches) {
         // Displaying a warning message.
         showWarningMessage("<strong>Warning!</strong> Your device doesn't seem to have a cursor, which is needed in order to drop a mod folder in the box below.")
     } else {
