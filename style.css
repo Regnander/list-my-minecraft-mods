@@ -3,7 +3,7 @@
     --dropZoneBg: linear-gradient(to left bottom, #77ff877a, #fff0), linear-gradient(to right top, #7ca3ff78, #00c2ff00), radial-gradient(circle at bottom, #ff83009c, #0000);
 }
 
-h1, h4, .modEntry, #footer, #dropzone, #output, #ghLogo, #copyDiv, #copyMessage, #copyArea {
+h1, h4, .modEntry, .alert, #footer, #dropzone, #output, #ghLogo, #copyDiv, #copyMessage, #copyArea {
     user-select: none;
 }
 
@@ -239,6 +239,19 @@ button:disabled {
         color: #FFF;
         border-color: #808080;
         background-image: var(--dropZoneBg), linear-gradient(#121212, #121212);
+    }
+    .alert {
+        font-family: 'Baloo 2', cursive;
+    }
+    .alert.alert-warning {
+        color: #fff;
+        background-color: #866f2e;
+        border-color: #a69561;
+    }
+    .alert.alert-danger {
+        color: #fff;
+        background-color: #8a434b;
+        border-color: #a86f75;
     }
     .bg-light {
         background-color: #262626 !important;

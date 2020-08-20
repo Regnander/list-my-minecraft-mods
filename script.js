@@ -7,7 +7,7 @@ function detectUnsupporterBrowser() {
     // Checking if a cursor isn't present on the current device.
     if (window.matchMedia("(hover: none)").matches && window.matchMedia("(pointer: coarse)").matches) {
         // Displaying a warning message.
-        showWarningMessage("<strong>Warning!</strong> Your device doesn't seem to have a cursor, which is needed in order to drop a mod folder in the box below.")
+        showErrorMessage("This site doesn't support touch&shy;screens. Please use a computer instead.")
     } else {
         // Grabbed from https://stackoverflow.com/a/9851769/5686799
         const isUsingOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(" OPR/") >= 0, isUsingIE = /*@cc_on!@*/false || !!document.documentMode
@@ -15,7 +15,7 @@ function detectUnsupporterBrowser() {
         // Is any unsupported browser being used?
         if (isUsingOpera || isUsingIE) {
             // Displaying a warning message.
-            showWarningMessage(`<strong>Warning!</strong> ${isUsingOpera ? "Opera" : isUsingIE ? "Internet Explorer" : "Your browser"} is currently lacking support for the necessary API that is used to read file name. Please use another browser.`)
+            showWarningMessage(`${isUsingOpera ? "Opera" : isUsingIE ? "Internet Explorer" : "Your browser"} is currently lacking support for the necessary API that is used to read file name. Please use another browser.`)
         }
     }
 }
@@ -32,7 +32,7 @@ function showErrorMessage(text) {
     divInfo.classList.add("alert-danger")
 
     // Calling a function to display the text inside the infobox.
-    showMessage(text)
+    showMessage(`<strong>Error!</strong> ${text}`)
 }
 
 /**
@@ -47,7 +47,7 @@ function showWarningMessage(text) {
     divInfo.classList.add("alert-warning")
 
     // Calling a function to display the text inside the infobox.
-    showMessage(text)
+    showMessage(`<strong>Warning!</strong> ${text}`)
 }
 
 /**
@@ -97,7 +97,7 @@ function handleFileSelect(evt) {
                 try {
                     entry = items[i].webkitGetAsEntry()
                 } catch (errorB) {
-                    showErrorMessage("<strong>Error!</strong> Unable to parse the dropped files. Try using a different browser.")
+                    showErrorMessage("Unable to parse the dropped files. Try using a different browser.")
                 }
             }
 
@@ -187,7 +187,7 @@ function roundUp(number) {
  * @param {*} count The number of mods.
  */
 function updateHeaderCount(count = 0) {
-    document.getElementById("countHeader").innerHTML = `Found ${count} JAR ${count == 1 ? "file" : "files"}`
+    document.getElementById("countHeader").innerHTML = `Found ${count} JAR&nbsp;${count == 1 ? "file" : "files"}`
 }
 
 /**
