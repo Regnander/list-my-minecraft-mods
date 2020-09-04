@@ -15,7 +15,7 @@ function detectUnsupporterBrowser() {
         // Is any unsupported browser being used?
         if (isUsingOpera || isUsingIE) {
             // Displaying a warning message.
-            showWarningMessage(`${isUsingOpera ? "Opera" : isUsingIE ? "Internet Explorer" : "Your browser"} is currently lacking support for the necessary API that is used to read file name. Please use another browser.`)
+            showWarningMessage(`${isUsingOpera ? "Opera" : isUsingIE ? "Internet Explorer" : "Your browser"} is currently lacking support for the necessary API used to read file names. Please use another browser.`)
         }
     }
 }
