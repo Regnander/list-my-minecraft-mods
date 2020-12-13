@@ -79,7 +79,7 @@ function handleFileSelect(evt) {
     evt.stopPropagation();
     evt.preventDefault();
 
-    const items = event.dataTransfer.items, list = document.getElementById("output"), button = document.getElementById("buttonCopy"), filenames = new Array(), folders = new Array()
+    const items = evt.dataTransfer.items, list = document.getElementById("output"), button = document.getElementById("buttonCopy"), filenames = new Array(), folders = new Array()
 
     // Clears the list of all content.
     list.innerHTML = ""
@@ -187,7 +187,38 @@ function roundUp(number) {
  * @param {*} count The number of mods.
  */
 function updateHeaderCount(count = 0) {
-    document.getElementById("countHeader").innerHTML = `Found ${count} JAR&nbsp;${count == 1 ? "file" : "files"}`
+    document.getElementById("countHeader").innerHTML = `Found ${count}&nbsp;JAR ${count == 1 ? "file" : "files"}`
+}
+
+/**
+ * Used to enable or update the header containing the number of found mods.
+ * @param {*} enable True if the button should be enabled and vice versa.
+ */
+function toggleCopyButton(enable) {
+    const button = document.getElementById("buttonCopy")
+
+    // Should the button be enabled?
+    if (enable) {
+        // Is the button already enabled?
+        if (button.disabled) {
+            // Enabling the button.
+            button.disabled = false
+
+            // Adding an animation class to make the button colorful.
+            button.classList.remove("buttonDisabled")
+            button.classList.add("buttonEnabled")
+        }
+    } else {
+        // Is the button already disabled?
+        if (!button.disabled) {
+            // Disabling the button.
+            button.disabled = true
+
+            // Adding an animation class to make the button fade to grey.
+            button.classList.remove("buttonEnabled")
+            button.classList.add("buttonDisabled")
+        }
+    }
 }
 
 /**
@@ -262,7 +293,7 @@ function parseDirectoryEntry(directoryEntry) {
  * Used to copy all listed mods to the clipboard.
  */
 function copyToClipboard() {
-    const textarea = document.getElementById("copyArea"), label = document.getElementById("copyMessage"), modlist = document.getElementsByClassName("modEntry"), button = document.getElementById("buttonCopy"), mods = new Array()
+    const textarea = document.getElementById("copyArea"), label = document.getElementById("copyMessage"), modlist = document.getElementsByClassName("modEntry"), buttonText = document.getElementById("buttonText"), mods = new Array(), clipboardIconRegular = document.getElementById("copyRegular"), clipboardIconDone = document.getElementById("copyDone")
 
     // Making sure there are any mods to copy.
     if (modlist.length > 0) {
@@ -282,32 +313,21 @@ function copyToClipboard() {
         // Copying the selected text to the clipboard.
         document.execCommand("copy");
 
-        // Displaying a message to indicate that the list is in the clipboard.
-        label.textContent = "📋 Copied!"
-        // Adding an animation class to make the message fade in.
-        label.classList.remove("messageFadeOut")
-        label.classList.add("messageFadeIn")
+        // Calls a function to add an animation class to disable the button.
+        toggleCopyButton(false)
 
-        // Disabling the button.
-        button.disabled = true
-        // Adding an animation class to make the button fade to grey.
-        button.classList.remove("buttonEnabled")
-        button.classList.add("buttonDisabled")
-
-        // Sets a timer for the message.
-        setTimeout(function () {
-            // Adding an animation class to make the message fade out.
-            label.classList.remove("messageFadeIn")
-            label.classList.add("messageFadeOut")
-        }, 1500);
+        // Hide the regular clipboard icon and displays one with a checkbox.
+        clipboardIconRegular.style.display = "none"
+        clipboardIconDone.style.display = "inline"
 
         // Sets a timer for the button.
         setTimeout(function () {
-            // Enabling the button.
-            button.disabled = false
-            // Adding an animation class to make the button colorful.
-            button.classList.remove("buttonDisabled")
-            button.classList.add("buttonEnabled")
+            // Calls a function to add an animation class to enable the button.
+            toggleCopyButton(true)
+
+            // Hide the clipboard icon with a checkbox and displays the regular one.
+            clipboardIconRegular.style.display = "inline"
+            clipboardIconDone.style.display = "none"
         }, 3500);
     }
 }
@@ -322,3 +342,4 @@ dropZone.addEventListener("drop", handleDragEnd, false);
 
 updateHeaderCount()
 detectUnsupporterBrowser()
+toggleCopyButton(false)

@@ -81,11 +81,12 @@ button:disabled {
     min-height: 58px;
     flex-wrap: wrap;
     display: flex;
-    align-items: stretch;
 }
 
 #copyDiv {
-    float: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: normal;
 }
 
 #copyArea {
@@ -103,7 +104,9 @@ button:disabled {
 }
 
 #buttonCopy {
-    padding: 0px 10px;
+    margin-bottom: 8px;
+    padding: 0px 0px;
+    width: 30px;
 }
 
 #footer {
@@ -263,5 +266,11 @@ button:disabled {
     }
     .dropzoneFadeIn {
         filter: hue-rotate(var(--hueRotate)) saturate(2);
+    }
+    .tooltip .tooltip-inner {
+        background-color: #585858;
+    }
+    .tooltip .arrow::before {
+        border-left-color: #585858;
     }
 }
